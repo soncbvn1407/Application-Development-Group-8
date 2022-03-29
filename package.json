@@ -1,0 +1,24 @@
+{
+  "name": "application-development-group-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soncbvn1407/Application-Development-Group-8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soncbvn1407/Application-Development-Group-8/issues"
+  },
+  "homepage": "https://github.com/soncbvn1407/Application-Development-Group-8#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "hbs": "^4.2.0",
+    "mongodb": "^4.4.1"
+  }
+}
