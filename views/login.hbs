@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="login.css">
+
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="login-form-container">
+
+        <div id="close-login-btn" class="fas fa-times"></div>
+
+        <form method="POST" action="/login">
+            <center>
+                <h2 style="color: red;">{{errorMsg}}</h2>
+            </center>
+            <h3>sign in</h3>
+            <span>username</span>
+            <input type="name" name="txtName" class="box" placeholder="Enter your name" id="">
+            <span>password</span>
+            <input type="password" name="txtPass" class="box" placeholder="Enter your password" id="">
+            <div class="login__decentralization">
+                <select name="Role" class="decentralization">                   
+                    <option value="Customer">Customer</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="remember-me">
+                    <label for="remember-me"> Remember me</label>
+                </div>
+            </div>
+
+            <button type="submit" value="sign in" class="btn">Sign in</button>
+            <p>forget password ? <a href="#">Click here</a></p>
+            <p>don't have an account ? <a href="/register">Sign Up</a></p>
+        </form>
+
+    </div>
+
+</body>
+<!-- custom js file link  -->
+<script>
+    let preveiwContainer = document.querySelector(".products-preview");
+    let previewBox = preveiwContainer.querySelectorAll(".preview");
+
+    document.querySelectorAll(".products-container .product").forEach((product) => {
+    product.onclick = () => {
+        preveiwContainer.style.display = "flex";
+        let name = product.getAttribute("data-name");
+        previewBox.forEach((preview) => {
+        let target = preview.getAttribute("data-target");
+        if (name == target) {
+            preview.classList.add("active");
+        }
+        });
+    };
+    });
+
+    previewBox.forEach((close) => {
+    close.querySelector(".fa-times").onclick = () => {
+        close.classList.remove("active");
+        preveiwContainer.style.display = "none";
+    };
+    });
+</script>
+
+</html>
