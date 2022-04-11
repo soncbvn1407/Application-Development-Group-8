@@ -1,31 +1,31 @@
 {
-    "name": "application-development-group-8",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/soncbvn1407/Application-Development-Group-8.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/soncbvn1407/Application-Development-Group-8/issues"
-    },
-    "homepage": "https://github.com/soncbvn1407/Application-Development-Group-8#readme",
-    "dependencies": {
-        "bcrypt": "^5.0.1",
-        "bcryptjs": "^2.4.3",
-        "express": "^4.17.3",
-        "express-handlebars": "^6.0.4",
-        "express-session": "^1.17.2",
-        "hbs": "^4.2.0",
-        "mongodb": "^4.5.0",
-        "mongoose": "^6.2.10",
-        "nodemon": "^2.0.15"
-      }
+  "name": "application-development-group-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soncbvn1407/Application-Development-Group-8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soncbvn1407/Application-Development-Group-8/issues"
+  },
+  "homepage": "https://github.com/soncbvn1407/Application-Development-Group-8#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.4",
+    "express-session": "^1.17.2",
+    "hbs": "^4.2.0",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
 }
