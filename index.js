@@ -29,12 +29,15 @@ app.use(
     resave: false,
   })
 );
-
+app.get("/homepage",(req,res)=>{
+  res.render("HomePage")
+});
 app.get("/logout", (req, res) => {
     req.session.user = null;
     res.redirect("/");
 });
 
+  
 app.get("/login", (req, res) => {
 res.render("login");
 });

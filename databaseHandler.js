@@ -61,11 +61,68 @@ async function getUser(name) {
     const result = await dbo.collection("Users").findOne({ userName: name });
     return result;
 }
+async function searchObjectbyName(collectionName, name) {
+    const dbo = await getdbo();
+    const result = await dbo
+        .collection(collectionName)
+        .find({ name: { $regex: name, $options: "i" } })
+        .toArray();
+    return result;
+}
 
+async function searchObjectbyID(collectionName, id) {
+    const dbo = await getdbo();
+    const result = await dbo
+        .collection(collectionName)
+        .find({ id: { $regex: id, $options: "i" } })
+        .toArray();
+    return result;
+}
+
+async function searchObjectbyPrice(collectionName, price) {
+    const dbo = await getdbo();
+    const result = await dbo
+        .collection(collectionName)
+        .find({ price: price })
+        .toArray();
+    return result;
+}
+
+async function searchObjectbyCategory(collectionName, category) {
+    const dbo = await getdbo();
+    const result = await dbo
+        .collection(collectionName)
+        .find({ category: ObjectId(category) })
+        .toArray();
+    return result;
+}
+
+async function getAll(collectionName) {
+    const dbo = await getdbo();
+    const result = await dbo
+        .collection(collectionName)
+        .find({})
+        .sort({ time: -1 })
+        .toArray();
+    return result;
+}
+async function searchHotBooks() {
+    const dbo = await getdbo();
+    const result = await dbo.collection("Book").find({ hot: "true" }).toArray();
+    return result;
+  }
+  
 module.exports = {
     insertObject,
     checkUserRole,
     checkUser,
     checkUserLogin,
     getUser,
+    searchObjectbyCategory,
+    searchObjectbyPrice,
+    searchObjectbyID,
+    searchObjectbyName,
+    getAll,
+    searchHotBooks,
+    
 };
