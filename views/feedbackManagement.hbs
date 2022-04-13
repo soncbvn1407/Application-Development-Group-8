@@ -1,0 +1,25 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Feedback_Management</title>
+ </head>
+ <body>
+     <table>
+         <tr>
+             <th>Usetarname</th>
+             <th>Product</th>
+             <th>Feedback</th>
+         </tr>
+         {{#each result}}
+         <tr>
+             <td>{{username}}</td>
+             <td>{{name}}</td>
+             <td>{{feedback}}</td>
+         </tr>
+         {{/each}}
+     </table>
+ </body>
+ </html>
