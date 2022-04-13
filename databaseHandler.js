@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const URL =
-  "mongodb+srv://thanhbinh2001:123456789abc@cluster0.spshl.mongodb.net/test";
+    "mongodb+srv://thanhbinh2001:123456789abc@cluster0.spshl.mongodb.net/test";
 const DATABASE_NAME = "Shop_Demo";
 
 
@@ -18,47 +18,55 @@ async function getdbo() {
 async function insertObject(collectionName, objectToInsert) {
     const dbo = await getdbo();
     const newObject = await dbo
-    .collection(collectionName)
-    .insertOne(objectToInsert);
+        .collection(collectionName)
+        .insertOne(objectToInsert);
     console.log(
-    "Gia tri id moi duoc insert la: ",
-    newObject.insertedId.toHexString()
+        "Gia tri id moi duoc insert la: ",
+        newObject.insertedId.toHexString()
     );
 }
-  
+
 async function checkUserLogin(nameIn) {
     const dbo = await getdbo();
     const results = await dbo.collection("Users").findOne({ userName: nameIn });
     if (results) {
-    return results;
+        return results;
     } else {
-    return -1;
+        return -1;
     }
 }
-  
+
 async function checkUserRole(nameIn) {
     const dbo = await getdbo();
     const user = await dbo.collection("Users").findOne({ userName: nameIn });
     if (user == null) {
-    return -1;
+        return -1;
     } else {
-    return user.role;
+        return user.role;
     }
 }
-  
+
 async function checkUser(nameIn) {
     const dbo = await getdbo();
     const results = await dbo.collection("Users").findOne({ userName: nameIn });
     if (results != null) {
-    return true;
+        return true;
     } else {
-    return false;
+        return false;
     }
 }
-  
+
 async function getUser(name) {
     const dbo = await getdbo();
     const result = await dbo.collection("Users").findOne({ userName: name });
+    return result;
+}
+
+async function getAllFeedback() {
+    const result = await getAll("Feedback");
+    result.forEach(
+        (e) => (e.timeString = new Date(e.time).toLocaleString("vi-VN"))
+    );
     return result;
 }
 
@@ -68,4 +76,5 @@ module.exports = {
     checkUser,
     checkUserLogin,
     getUser,
+    getAllFeedback,
 };
