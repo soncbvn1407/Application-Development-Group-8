@@ -70,7 +70,6 @@ async function searchObjectbyName(collectionName, name) {
     return result;
 }
 
-<<<<<<< HEAD
 async function searchObjectbyID(collectionName, id) {
     const dbo = await getdbo();
     const result = await dbo
@@ -113,7 +112,7 @@ async function searchHotBooks() {
     return result;
   }
   
-=======
+
 async function getAllFeedback() {
     const result = await getAll("Feedback");
     result.forEach(
@@ -122,22 +121,19 @@ async function getAllFeedback() {
     return result;
 }
 
->>>>>>> a7fdbc89d78bdc333a6cf4812a92b5e1b3847e51
+
 module.exports = {
     insertObject,
     checkUserRole,
     checkUser,
     checkUserLogin,
     getUser,
-<<<<<<< HEAD
     searchObjectbyCategory,
     searchObjectbyPrice,
     searchObjectbyID,
     searchObjectbyName,
     getAll,
     searchHotBooks,
-    
-=======
     getAllFeedback,
->>>>>>> a7fdbc89d78bdc333a6cf4812a92b5e1b3847e51
+
 };
