@@ -110,8 +110,13 @@ async function searchHotBooks() {
     const dbo = await getdbo();
     const result = await dbo.collection("Book").find({ hot: "true" }).toArray();
     return result;
+<<<<<<< HEAD
   }
   
+=======
+}
+
+>>>>>>> 73f8d61751b70d58d2dbd51978f814530b6c38f6
 
 async function getAllFeedback() {
     const result = await getAll("Feedback");
@@ -121,7 +126,10 @@ async function getAllFeedback() {
     return result;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73f8d61751b70d58d2dbd51978f814530b6c38f6
 module.exports = {
     insertObject,
     checkUserRole,
@@ -134,6 +142,9 @@ module.exports = {
     searchObjectbyName,
     getAll,
     searchHotBooks,
+<<<<<<< HEAD
     getAllFeedback,
+=======
+>>>>>>> 73f8d61751b70d58d2dbd51978f814530b6c38f6
 
 };
