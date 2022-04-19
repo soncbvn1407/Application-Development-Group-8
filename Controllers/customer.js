@@ -16,9 +16,9 @@ router.get("/", async (req, res) => {
   const hotBook = await dbHandler.searchHotBooks();
 
   if (!req.session.user) {
-    res.render("index", { truyens: truyen, ITbooks: ITbook, hotBook: hotBook });
+    res.render("HomePage", { truyens: truyen, ITbooks: ITbook, hotBook: hotBook });
   } else {
-    res.render("index", {
+    res.render("HomePage", {
       truyens: truyen,
       ITbooks: ITbook,
       hotBook: hotBook,
@@ -78,13 +78,13 @@ async function SearchObject(
   const resultSearch = await dbFunction(collectionName, searchInput);
   if (resultSearch.length != 0) {
     if (!req.session.user) {
-      res.render("search", {
+      res.render("HomePage", {
         searchBook: resultSearch,
         truyens: truyen,
         ITbooks: ITbook,
       });
     } else {
-      res.render("search", {
+      res.render("HomePage", {
         searchBook: resultSearch,
         truyens: truyen,
         ITbooks: ITbook,
@@ -94,14 +94,14 @@ async function SearchObject(
   } else {
     if (!req.session.user) {
       const message = "Not found " + searchInput + mess;
-      res.render("search", {
+      res.render("HomePage", {
         truyens: truyen,
         ITbooks: ITbook,
         errorSearch: message,
       });
     } else {
       const message = "Not found " + searchInput + mess;
-      res.render("search", {
+      res.render("HomePage", {
         truyens: truyen,
         ITbooks: ITbook,
         errorSearch: message,
@@ -111,14 +111,14 @@ async function SearchObject(
   }
 }
 
-router.get("/details", async (req, res) => {
+router.get("/detail", async (req, res) => {
   const id = req.query.id;
   const result = await dbHandler.getDocumentById(id, "Book");
   const category = await dbHandler.getDocumentById(result.category, "Category");
   if (!req.session.user) {
-    res.render("product_Detail", { details: result, category: category });
+    res.render("bookdetail", { details: result, category: category });
   } else {
-    res.render("product_Detail", {
+    res.render("bookdetail", {
       details: result,
       category: category,
       user: req.session.user,
