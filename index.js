@@ -70,12 +70,18 @@ app.post("/login", async (req, res) => {
             console.log(req.session.user);
             req.session["cart"] = null;
             if (role == "Customer") {
+<<<<<<< HEAD
               res.render("HomePage");
             } else {
               res.send("UpdateBook");
+=======
+              res.redirect("/");
+            } else {
+              res.redirect("/admin");
+>>>>>>> 7e260cf16df4bdf156bc3b3623b875bb63d9e578
             }
           } else {
-            res.render("login", { errorMsg: "not auth!!" });
+            res.render("login", { errorMsg: "account is empty or invalid!!" });
           }
         }
       } else {
