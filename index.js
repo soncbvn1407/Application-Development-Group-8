@@ -70,9 +70,9 @@ app.post("/login", async (req, res) => {
             console.log(req.session.user);
             req.session["cart"] = null;
             if (role == "Customer") {
-              res.send("login successfuly");
+              res.render("HomePage");
             } else {
-              res.send("login successfuly");
+              res.send("UpdateBook");
             }
           } else {
             res.render("login", { errorMsg: "not auth!!" });
@@ -108,7 +108,7 @@ app.post("/register", async (req, res) => {
           password: hashPass,
         };
         await dbHandler.insertObject("Users", newUser);
-        res.render("register");
+        res.render("login");
       } else {
         res.render("register", { errorMsg: "Password is not match" });
       }
@@ -117,7 +117,7 @@ app.post("/register", async (req, res) => {
     }
 });
   
-//cac request co chua /admin se di den controller customer
+//cac request co chua customer se di den controller customer
 const userController = require("./controllers/customer");
 app.use("/", userController);
 
