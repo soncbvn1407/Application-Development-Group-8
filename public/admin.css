@@ -13,6 +13,7 @@ body {
     background-color: #ffffff;
     float: left;
     overflow: hidden;
+    transition: 0.1s;
   }
   .logo {
     height: 80px;
