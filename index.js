@@ -70,12 +70,12 @@ app.post("/login", async (req, res) => {
             console.log(req.session.user);
             req.session["cart"] = null;
             if (role == "Customer") {
-              res.send("login successfuly");
+              res.redirect("/");
             } else {
-              res.send("login successfuly");
+              res.redirect("/admin");
             }
           } else {
-            res.render("login", { errorMsg: "not auth!!" });
+            res.render("login", { errorMsg: "account is empty or invalid!!" });
           }
         }
       } else {
