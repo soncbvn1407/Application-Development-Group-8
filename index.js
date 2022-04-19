@@ -47,47 +47,41 @@ res.render("register");
 });
 
 app.post("/login", async (req, res) => {
-    const name = req.body.txtName;
-    const pass = req.body.txtPass;
-    const user = await dbHandler.checkUserLogin(name);
-    if (user == -1) {
-      res.render("login", { errorMsg: "Not found UserName!!" });
-    } else {
-      const validPass = await bcrypt.compare(pass, user.password);
-      if (validPass) {
-        const role = await dbHandler.checkUserRole(name);
-        if (role == -1) {
-          res.render("login", { errorMsg: "Login failed!" });
-        } else {
-          if (req.body.Role == role) {
-            const customer = await dbHandler.getUser(name, user.email)
-            req.session.user = {
-              name: name,
-              role: role,
-              email: customer.email,
-            };
-            console.log("Loged in with: ");
-            console.log(req.session.user);
-            req.session["cart"] = null;
-            if (role == "Customer") {
-<<<<<<< HEAD
-              res.render("HomePage");
-            } else {
-              res.send("UpdateBook");
-=======
-              res.redirect("/");
-            } else {
-              res.redirect("/admin");
->>>>>>> 7e260cf16df4bdf156bc3b3623b875bb63d9e578
-            }
-          } else {
-            res.render("login", { errorMsg: "account is empty or invalid!!" });
-          }
-        }
+  const name = req.body.txtName;
+  const pass = req.body.txtPass;
+  const user = await dbHandler.checkUserLogin(name);
+  if (user == -1) {
+    res.render("login", { errorMsg: "Not found UserName!!" });
+  } else {
+    const validPass = await bcrypt.compare(pass, user.password);
+    if (validPass) {
+      const role = await dbHandler.checkUserRole(name);
+      if (role == -1) {
+        res.render("login", { errorMsg: "Login failed!" });
       } else {
-        res.render("login", { errorMsg: "Incorrect password!!" });
+        if (req.body.Role == role) {
+          const customer = await dbHandler.getUser(name, user.email)
+          req.session.user = {
+            name: name,
+            role: role,
+            email: customer.email,
+          };
+          console.log("Loged in with: ");
+          console.log(req.session.user);
+          req.session["cart"] = null;
+          if (role == "Customer") {
+            res.redirect("/");
+          } else {
+            res.redirect("/admin");
+          }
+        } else {
+          res.render("login", { errorMsg: "not auth!!" });
+        }
       }
+    } else {
+      res.render("login", { errorMsg: "Incorrect password!!" });
     }
+  }
 });
 const shoppingCart = require("./controllers/cart");
 app.use("/shoppingCart", shoppingCart);
