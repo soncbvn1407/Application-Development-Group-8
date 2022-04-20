@@ -114,13 +114,13 @@ async function SearchObject(
 router.get("/detail", async (req, res) => {
   const id = req.query.id;
   const result = await dbHandler.getDocumentById(id, "Book");
-  const category = await dbHandler.getDocumentById(result.category, "Category");
+
   if (!req.session.user) {
-    res.render("bookdetail", { details: result, category: category });
+    res.render("detail", { details: result });
   } else {
-    res.render("bookdetail", {
+    res.render("detail", {
       details: result,
-      category: category,
+
       user: req.session.user,
     });
   }
