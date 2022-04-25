@@ -113,7 +113,7 @@
                                     <a href="/admin">
                                         <h4>Orders</h4>
                                     </a>
-                                    <p>1000+</p>
+                                    <p>{{statistical.orderCounts}}</p>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                     <a href="/admin/feedbackManage">
                                         <h4>Feedback</h4>
                                     </a>
-                                    <p>1000+</p>
+                                    <p>{{statistical.feedbackCounts}}</p>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                                         <h4>Customers</h4>
                                     </a>
 
-                                    <p>800+</p>
+                                    <p>{{statistical.customerCounts}}</p>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +158,7 @@
                                     <a href="/admin/product">
                                         <h4>Products</h4>
                                     </a>
-
-                                    <p>700+</p>
+                                    <p>{{statistical.bookCounts}}</p>
                                 </div>
                             </div>
                         </div>
@@ -197,6 +196,7 @@
                                                 <th>Product</th>
                                                 <th>Feedback</th>
                                                 <th>Time</th>
+                                                <th>Reply</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -207,11 +207,20 @@
                                                 <td>{{name}}</td>
                                                 <td>{{feedback}}</td>
                                                 <td>{{timeString}}</td>
+                                                <td>{{reply}}</td>
                                                 <td><button
                                                         onclick="confirmFeedback('/admin/feedbackManage/delete?id={{_id}}', 'Are you sure to delete feedback of {{username}}')">Delete</button>
+                                                    {{#ifeq reply undefined}}
+                                                    <button onclick="confirmReply('{{_id}}')">Reply</button>
+                                                    {{/ifeq}}
                                                 </td>
                                             </tr>
                                             {{/each}}
+                                            <form id="formReplyFeedback" action="/admin/feedbackManage/reply"
+                                                method="post">
+                                                <input type="hidden" id="_id" />
+                                                <input type="hidden" id="replyContent" />
+                                            </form>
                                         </tbody>
                                     </table>
                                 </div>
@@ -374,6 +383,13 @@
             $('.sidebar').toggleClass('active');
             $('.page-content-wrapper').toggleClass('active');
         }
+        function confirmReply(id) {
+            var contentReply = prompt("Enter the content reply here...");
+            if (contentReply != null) {
+                debugger;
+                $('#formReplyFeedback').attr('action', '/admin/feedbackManage/reply?id=' + id + '&reply=' + contentReply).submit();
+            }
+        }        
         $(document).ready(function () {
             $(window).bind('resize', function () {
                 if ($(this).width() < 992) {
@@ -386,7 +402,4 @@
             }).trigger('resize');
         });
     </script>
-
-
-
 </body>
