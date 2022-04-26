@@ -5,23 +5,16 @@ const router = express.Router();
 router.use(express.static("public"));
 
 router.get("/", async (req, res) => {
-  const truyen = await dbHandler.searchObjectbyCategory(
+  const books = await dbHandler.getAll(
     "Book",
-    "61e570c7ba41b21dee1346b3"
   );
-  const ITbook = await dbHandler.searchObjectbyCategory(
-    "Book",
-    "61e570ddba41b21dee1346b4"
-  );
-  const hotBook = await dbHandler.searchHotBooks();
+  
 
   if (!req.session.user) {
-    res.render("HomePage", { truyens: truyen, ITbooks: ITbook, hotBook: hotBook });
+    res.render("HomePage", { books: books });
   } else {
     res.render("HomePage", {
-      truyens: truyen,
-      ITbooks: ITbook,
-      hotBook: hotBook,
+      books: books,
       user: req.session.user,
     });
   }
@@ -37,7 +30,7 @@ router.get("/search", async (req, res) => {
     "61e570ddba41b21dee1346b4"
   );
   const searchInput = req.query.searchInput;
-  if (isNaN(Number.parseFloat(searchInput)) == false) {
+  if (isNaN(searchInput) == false) {
     await SearchObject(
       req,
       searchInput,

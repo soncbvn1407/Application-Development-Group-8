@@ -233,9 +233,9 @@ router.post('/addbook', async(req, res) => {
         const priceInput = req.body.txtPrice
         const image = req.body.txtImage
         const Description = req.body.txtDescription
-        const Category = req.body.Category
-        const CategoryID = await dbHandler.getDocumentByName("Category", Category)
-        const newBook = { name: nameInput, des: Description, price: Number.parseFloat(priceInput), pic: image, category: CategoryID._id }
+        const CategoryName = req.body.Category
+        // const CategoryID = await dbHandler.getDocumentByName("Category", Category)
+        const newBook = { name: nameInput, des: Description, price: Number.parseFloat(priceInput), pic: image, category: CategoryName }
         await dbHandler.insertObject("Book", newBook)
         res.redirect('/admin/product')
     })

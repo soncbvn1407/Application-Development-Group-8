@@ -48,7 +48,7 @@ async function searchObjectbyPrice(collectionName, price) {
     const dbo = await getdbo();
     const result = await dbo
         .collection(collectionName)
-        .find({ price: price })
+        .find({ price: {$lt: price} })
         .toArray();
     return result;
 }
