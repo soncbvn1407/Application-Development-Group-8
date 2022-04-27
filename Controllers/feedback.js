@@ -18,12 +18,15 @@ router.use((req, res, next) => {
 router.get("/", async(req, res) => {
     const result = await dbHandler.getAll("Feedback");
     const arr = [];
+    const book = await dbHandler.getDocumentByName("Book", req.query.name);
     result.forEach(e => {
         if (req.query.name === e.name) {
             arr.push(e);
         }
+
     })
-    res.render("feedback", { query: req.query.name, list: arr }); //lay id cua sach truyen vao form
+    console.log(book)
+    res.render("feedback", { query: req.body.name, list: arr, book: book }); //lay id cua sach truyen vao form
 });
 router.post("/", (req, res) => {
     const obj = {
