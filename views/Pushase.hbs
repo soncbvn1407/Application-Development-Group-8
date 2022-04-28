@@ -55,8 +55,15 @@
                                 </td>
                                 <td>{{time}}</td>
                                 <td>{{totalPrice}}$</td>
-                                <td>{{Status}} <a href="/shoppingCart/UpdateSt?id={{_id}}"> <button type="sumbit">
-                                            Cancel</button> </a></td>
+                                <td>
+                                    <form action="/shoppingCart/UpdateSt?id={{_id}}" method="post">
+                                        {{Status}}
+                                        <button type="sumbit">
+                                            Cancel</button> 
+                                    </form>
+                                </td>
+                                    {{!-- {{Status}} <a href="/shoppingCart/UpdateSt?id={{_id}}"> <button type="sumbit">
+                                            Cancel</button> </a> --}}
                             </tr>
                             {{/each}}
                         </tbody>
