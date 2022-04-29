@@ -43,7 +43,7 @@ router.get('/', async(req, res) => {
 })
 
 router.get("/:sortBy", async(req, res, next) => { //sortby same tham số
-    let result = await dbHandler.getAll("Order");
+    let result = await dbHandler.getAll("Customer Order");
     const statisticalResult = await dbHandler.countStatistical();
     if (req.params.sortBy === "today") {
         let today = new Date().toLocaleDateString("vi"); //lưu new Date.toLocaledatestring = today; today ở dạng stirng
